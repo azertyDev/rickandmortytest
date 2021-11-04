@@ -5,13 +5,17 @@
   "dependencies": {
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
-    "@emotion/styled": "latest",
     "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@mui/lab": "^5.0.0-alpha.53",
     "@mui/material": "latest",
+    "@reduxjs/toolkit": "^1.6.2",
+    "@types/react-redux": "^7.1.20",
     "clsx": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-redux": "^7.2.6"
   },
   "scripts": {
     "dev": "next",
