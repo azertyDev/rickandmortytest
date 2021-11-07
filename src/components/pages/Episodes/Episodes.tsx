@@ -1,42 +1,30 @@
 import {
+  Button,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableFooter,
   TableHead,
-  TablePagination,
   TableRow,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import { IEpisode } from "../../../models/IEpisode";
+import { useState } from "react";
 import { useFetchAllEpisodesQuery } from "../../../services/apiService";
+import { IEpisode } from "../../../models/IEpisode";
 
 export const Episodes = () => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const { data: episodes, isLoading } = useFetchAllEpisodesQuery({ page });
 
-  const [data, setData] = useState();
-  const [nextPage, setNextPage] = useState();
-  console.log(data);
+  const { results } = episodes || {};
 
-  const [rowsPerPage, setRowsPerPage] = useState(20);
-
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage + 1);
-    console.log("newPage ", newPage);
+  const handlePrevClick = () => {
+    setPage(page - 1);
   };
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(+event.target.value);
+  const handleNextClick = () => {
     setPage(page + 1);
   };
-
-  useEffect(() => {
-    setData(episodes);
-  }, []);
 
   return (
     <TableContainer>
@@ -50,7 +38,7 @@ export const Episodes = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {/* {results?.map((row: IEpisode) => (
+          {results?.map((row: IEpisode) => (
             <TableRow key={row.id}>
               <TableCell component="th" scope="row" align="center">
                 {row.name}
@@ -65,28 +53,20 @@ export const Episodes = () => {
                 {row.characters.length}
               </TableCell>
             </TableRow>
-          ))} */}
+          ))}
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TablePagination
-              colSpan={4}
-              count={22}
-              rowsPerPage={rowsPerPage}
-              page={page - 1}
-              SelectProps={{
-                inputProps: {
-                  "aria-label": "rows per page",
-                },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-
-            {/* <Button onClick={() => }>
-              
-            </Button> */}
+            <Button
+              onClick={handlePrevClick}
+              variant="outlined"
+              disabled={page === 0}
+            >
+              prev
+            </Button>
+            <Button onClick={handleNextClick} variant="outlined">
+              next
+            </Button>
           </TableRow>
         </TableFooter>
       </Table>
