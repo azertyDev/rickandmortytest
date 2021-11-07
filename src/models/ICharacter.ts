@@ -24,7 +24,7 @@ interface NameUrl {
 }
 
 export interface Info {
-  count: number;
+  count?: number;
   pages: number;
   next: string;
   prev: string;

@@ -14,7 +14,16 @@ export const apiService = createApi({
         };
       },
     }),
+    fetchAllEpisodes: builder.query({
+      query: (arg) => {
+        const { page } = arg;
+        return {
+          url: "/episode",
+          params: { page },
+        };
+      },
+    }),
   }),
 });
 
-export const { useFetchAllCharacterQuery } = apiService;
+export const { useFetchAllCharacterQuery,useFetchAllEpisodesQuery } = apiService;

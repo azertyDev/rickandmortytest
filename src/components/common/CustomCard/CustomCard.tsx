@@ -6,7 +6,7 @@ import {
   Typography,
 } from "@mui/material";
 import { FC } from "react";
-import { ICharacter } from "../../../../models/ICharacter";
+import { ICharacter } from "../../../models/ICharacter";
 
 export const CustomCard: FC<ICharacter> = (props) => {
   return (
